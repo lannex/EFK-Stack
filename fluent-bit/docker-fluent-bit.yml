@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  fluent-bit:
+    build: ./
+    container_name: fluent-bit
+    image: posicube/fluent-bit
+    environment:
+      - LOG_LEVEL=${LOG_LEVEL}
+      - IGNORE_OLDER=${IGNORE_OLDER}
+      - OUTPUT_HOST=${OUTPUT_HOST}
+      - OUTPUT_PORT=${OUTPUT_PORT}
+      - BIZ_CLIENT=${BIZ_CLIENT}
+    volumes:
+      - /var/log:/rootfs/var/log:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock
