@@ -13,3 +13,20 @@ services:
     ports:
       - "24224:24224"
       - "24224:24224/udp"
+    deploy:
+      mode: replicated
+      resources:
+        reservations:
+          cpus: '1.0'
+          memory: 256M
+      restart_policy:
+        condition: on-failure
+      placement:
+        max_replicas_per_node: 1
+    networks:
+      - private_net
+      # - public_net
+
+networks:
+  private_net:
+    driver: overlay
