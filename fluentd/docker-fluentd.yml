@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  fluentd:
+    build: ./
+    container_name: fluentd
+    image: posicube/fluentd
+    environment:
+      - ELASTIC_HOST=${ELASTIC_HOST}
+      - ELASTIC_PORT=${ELASTIC_PORT}
+      - ELASTIC_USER=${ELASTIC_USER}
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
