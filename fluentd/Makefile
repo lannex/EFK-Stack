@@ -1,17 +1,27 @@
+IMAGE_NAME = posicube/fluentd
+SWARM_NAME = swarm_fluentd
+CONTAINER_NAME = fluentd
+
+.PHONY: build
+build:
+	docker build -t $(IMAGE_NAME) .
+
+.PHONY: rmi
+rmi:
+	docker rmi $(IMAGE_NAME)
+
+.PHONY: rm
+rm:
+	docker rm -f $(CONTAINER_NAME)
+
 .PHONY: compose-up
 compose-up:
-	docker-compose -f docker-fluentd.yml up -d
-
-.PHONY: compose-rm
-compose-rm:
-	docker rm -f fluentd
-	docker rmi posicube/fluentd
-	docker network rm fluentd_private_net
+	docker-compose up -d
 
 .PHONY: stack-deploy
 stack-deploy:
-	docker stack deploy -c docker-fluentd.yml swarm
+	$(shell cat .env) docker stack deploy -c docker-compose.yml swarm
 
 .PHONY: service-rm
 service-rm:
-	docker service rm swarm_fluentd
+	docker service rm $(SWARM_NAME)

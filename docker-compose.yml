@@ -3,16 +3,12 @@ version: "3.8"
 services:
   fluent-bit:
     extends:
-      file: ./fluent-bit/docker-fluent-bit.yml
+      file: ./fluent-bit/docker-compose.yml
       service: fluent-bit
     links:
       - fluentd
 
   fluentd:
     extends:
-      file: ./fluentd/docker-fluentd.yml
+      file: ./fluentd/docker-compose.yml
       service: fluentd
-
-# networks:
-#   logger_default:
-#     external: true
