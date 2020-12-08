@@ -25,10 +25,21 @@ services:
         condition: on-failure
       placement:
         max_replicas_per_node: 1
-    networks:
-      - private_net
-      # - public_net
+#     networks:
+#       - private_net
+#       - public_net
 
-networks:
-  private_net:
-    driver: overlay
+# networks:
+#   public_net:
+#     external: true
+#     name: swarm_public_net
+#   host_net:
+#     external: true
+#     name: host
+#   private_net:
+#     internal: true
+#     driver: overlay
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 10.32.0.0/16

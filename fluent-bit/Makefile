@@ -1,17 +1,27 @@
+IMAGE_NAME = posicube/fluent-bit
+SWARM_NAME = swarm_fluent-bit
+CONTAINER_NAME = fluent-bit
+
+.PHONY: build
+build:
+	docker build -t $(IMAGE_NAME) .
+
+.PHONY: rmi
+rmi:
+	docker rmi $(IMAGE_NAME)
+
+.PHONY: rm
+rm:
+	docker rm -f $(CONTAINER_NAME)
+
 .PHONY: compose-up
 compose-up:
-	docker-compose -f docker-fluent-bit.yml up -d
-
-.PHONY: compose-rm
-compose-rm:
-	docker rm -f fluent-bit
-	docker rmi posicube/fluent-bit
-	docker network rm fluent-bit_private_net
+	docker-compose up -d
 
 .PHONY: stack-deploy
 stack-deploy:
-	docker stack deploy -c docker-fluent-bit.yml swarm
+	$(shell cat .env) docker stack deploy -c docker-compose.yml swarm
 
 .PHONY: service-rm
 service-rm:
-	docker service rm swarm_fluent-bit
+	docker service rm $(SWARM_NAME)
