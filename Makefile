@@ -10,7 +10,7 @@ SWARM_NAME = swarm_$(CONTAINER_NAME)
 
 .PHONY: build
 build:
-	docker -H $(SSH_URI) build -t $(IMAGE_NAME) .
+	docker -H $(SSH_URI) build -t $(IMAGE_NAME) $(CONTAINER_NAME)/
 
 .PHONY: rmi
 rmi:
