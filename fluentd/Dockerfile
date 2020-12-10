@@ -5,7 +5,7 @@ USER root
 RUN apk add --no-cache --update --virtual .build-deps \
   sudo build-base ruby-dev \
   && sudo gem install \
-    # fluent-plugin-concat \
+    fluent-plugin-concat \
     fluent-plugin-elasticsearch \
     # fluent-plugin-rewrite-tag-filter \
     # fluent-plugin-detect-exceptions \
