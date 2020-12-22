@@ -6,8 +6,8 @@ services:
     container_name: fluent-bit
     image: posicube/fluent-bit
     environment:
-      - LOG_LEVEL=${LOG_LEVEL}
-      - IGNORE_OLDER=${IGNORE_OLDER}
+      - LOG_LEVEL=info
+      - IGNORE_OLDER=10m
       - OUTPUT_HOST=${OUTPUT_HOST}
       - OUTPUT_PORT=${OUTPUT_PORT}
       - BIZ_CLIENT=${BIZ_CLIENT}
