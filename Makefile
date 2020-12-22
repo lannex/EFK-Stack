@@ -1,7 +1,7 @@
-ifeq ($(SSH), pcdev3)
-	CONTAINER_NAME = fluent-bit
-else ifeq ($(SSH), backoffice-admin)
+ifeq ($(SSH), backoffice-admin)
 	CONTAINER_NAME = fluentd
+else
+	CONTAINER_NAME = fluent-bit
 endif
 
 SSH_URI = ssh://$(SSH)
@@ -23,10 +23,6 @@ rm:
 .PHONY: ps
 ps:
 	docker -H $(SSH_URI) ps
-
-.PHONY: compose-up
-compose-up:
-	docker-compose -H $(SSH_URI) up -d
 
 .PHONY: stack-deploy
 stack-deploy:
