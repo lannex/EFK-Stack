@@ -2,8 +2,8 @@ version: "3.8"
 
 services:
   fluent-bit:
-    build: ./
-    container_name: fluent-bit
+    # build: ./
+    # container_name: fluent-bit
     image: posicube/fluent-bit
     environment:
       - LOG_LEVEL=info
@@ -19,7 +19,7 @@ services:
       mode: global
       resources:
         reservations:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 128M
       restart_policy:
         condition: on-failure
