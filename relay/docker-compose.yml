@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  fluent-relay:
+    image: posicube/fluent-relay
+    environment:
+      - OUTPUT_HOST=${OUTPUT_HOST}
+      - OUTPUT_PORT=${OUTPUT_PORT}
+    volumes:
+      - /var/log:/rootfs/var/log:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      mode: global
+      resources:
+        reservations:
+          cpus: '0.5'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+      placement:
+        max_replicas_per_node: 1
+        constraints:
+          - node.labels.tier==ai
