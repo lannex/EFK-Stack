@@ -7,6 +7,7 @@ RUN apk add --no-cache --update --virtual .build-deps \
   && sudo gem install \
     fluent-plugin-concat \
     fluent-plugin-elasticsearch \
+    # fluent-plugin-regexp_multi \
     # fluent-plugin-rewrite-tag-filter \
     # fluent-plugin-detect-exceptions \
     # fluent-plugin-multi-format-parser \
