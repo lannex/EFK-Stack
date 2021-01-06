@@ -21,3 +21,10 @@ run:
 .PHONY: stack-deploy
 stack-deploy:
 	$(shell cat .env) docker -H $(SSH_URI) stack deploy -c docker-compose.yml swarm
+
+.PHONY: rebuild-deploy
+rebuild-deploy:
+	make -e SSH=$(SSH) rm
+	make -e SSH=$(SSH) rmi
+	make -e SSH=$(SSH) build
+	make -e SSH=$(SSH) run

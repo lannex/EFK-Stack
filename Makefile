@@ -18,3 +18,11 @@ stack-deploy:
 .PHONY: service-logs
 service-logs:
 	docker -H $(SSH_URI) service logs -f $(SWARM_NAME)
+
+.PHONY: rebuild-deploy
+rebuild-deploy:
+	make -e SSH=$(SSH) service-rm
+	sleep 10
+	make -e SSH=$(SSH) rmi
+	make -e SSH=$(SSH) build
+	make -e SSH=$(SSH) stack-deploy
