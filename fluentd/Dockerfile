@@ -22,6 +22,10 @@ RUN apk add --no-cache --update --virtual .build-deps \
 COPY conf/* /fluentd/etc/
 COPY entrypoint.sh /bin/
 
+RUN mkdir -p /var/log/fluentd
+
+RUN chmod -R a+rwx /var/log/fluentd
+
 RUN chmod +x /bin/entrypoint.sh
 
 USER fluent
