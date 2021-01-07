@@ -1,4 +1,8 @@
 FROM fluent/fluent-bit:1.6
+
+USER root
+
 COPY conf/* /fluent-bit/etc/
 # COPY bin/* /fluent-bit/bin/
-USER root
+
+ENV TZ=Asia/Seoul

@@ -1,4 +1,4 @@
-FROM fluent/fluentd:v1.11-1
+FROM fluent/fluentd:v1.12-1
 
 USER root
 
@@ -27,5 +27,9 @@ RUN mkdir -p /var/log/fluentd
 RUN chmod -R a+rwx /var/log/fluentd
 
 RUN chmod +x /bin/entrypoint.sh
+
+ENV TZ=Asia/Seoul
+# RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
+# COPY /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 
 USER fluent
