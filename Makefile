@@ -22,7 +22,7 @@ service-logs:
 .PHONY: rebuild-deploy
 rebuild-deploy:
 	make -e SSH=$(SSH) service-rm
-	sleep 10
+	sleep 12
 	make -e SSH=$(SSH) rmi
 	make -e SSH=$(SSH) build
 	make -e SSH=$(SSH) stack-deploy
