@@ -21,15 +21,14 @@ RUN apk add --no-cache --update --virtual .build-deps \
 
 COPY conf/* /fluentd/etc/
 COPY entrypoint.sh /bin/
-
-RUN mkdir -p /var/log/fluentd
-
-RUN chmod -R a+rwx /var/log/fluentd
-
 RUN chmod +x /bin/entrypoint.sh
 
+RUN mkdir -p /var/log/fluentd
+RUN chmod -R a+rwx /var/log/fluentd
+
+RUN apk add tzdata
 ENV TZ=Asia/Seoul
-# RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
 # COPY /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 
 USER fluent
